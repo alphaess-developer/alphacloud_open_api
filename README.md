@@ -7,7 +7,10 @@ The current plan is that the SN is associated with the user's mailbox, and the v
 
 # What APIs are there?
 1.getPowerDataBySn 
+
 2.getMySystemList  
+
 3.getChargingBySn 
+
 4.setChargingBySn
 
