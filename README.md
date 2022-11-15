@@ -6,8 +6,8 @@ In the near future, a development platform will be developed, which is expected 
 The current plan is that the SN is associated with the user's mailbox, and the verification code needs to be obtained through the user's mailbox
 
 # What APIs are there?
-1.getPowerDataBySn
-2.getMySystemList
-3.getChargingBySn
+1.getPowerDataBySn /br
+2.getMySystemList /br
+3.getChargingBySn /br
 4.setChargingBySn
 
