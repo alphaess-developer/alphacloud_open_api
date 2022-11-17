@@ -6,11 +6,15 @@ In the near future, a development platform will be developed, which is expected 
 The current plan is that the SN is associated with the user's mailbox, and the verification code needs to be obtained through the user's mailbox
 
 # What APIs are there?
-1.getPowerDataBySn 
+1.getPowerDataBySn (The one stage)
 
-2.getMySystemList  
+2.getMySystemList  (The one stage)
 
-3.getChargingBySn 
+3.getChargingBySn (The one stage)
 
-4.setChargingBySn
+4.setChargingBySn (The one stage)
+
+5.getSystemPowerBySn(The second stage)
+
+6.getSystemStatisticalBySn(The second stage)
 
