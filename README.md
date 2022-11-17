@@ -18,3 +18,6 @@ The current plan is that the SN is associated with the user's mailbox, and the v
 
 6.getSystemStatisticalBySn(The second stage)
 
+# When will the development be completed?
+
+We plan to complete the development on December 30th.If there are special circumstances, the community will update。
