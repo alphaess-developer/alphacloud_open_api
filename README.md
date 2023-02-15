@@ -5,3 +5,12 @@ Our Api has been developed, internal test address: http://open.alphaess.com/, ne
 Currently the manual is still in the translation stage。
 
 The account will not be deleted after the official release。
+
+The current Python demo code still needs to be modified。
+
+Welcome everyone to raise Issus, AlphaESS R&D will reply your questions
+
+
+# Next Plan
+
+We will develop webhook solution。
