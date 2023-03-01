@@ -21,7 +21,5 @@ Welcome everyone to raise Issus, AlphaESS R&D will reply your questions
 
 ![image](https://user-images.githubusercontent.com/117050711/219544085-2f7eb69d-99b8-40f7-b72b-5b4eaa0f01a7.png)
 
-# Next Plan
 
-We will develop webhook solution。
 
