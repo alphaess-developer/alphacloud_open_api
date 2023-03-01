@@ -1,6 +1,3 @@
-# Reference: https://github.com/CharlesGillanders/alphaess/blob/main/alphaess/alphaess.py
-# might not work at all
-
 import time 
 import aiohttp 
 import logging
@@ -14,9 +11,9 @@ logger = logging.getLogger(__name__)
 
 class AlphaESSAPI:
     def __init__(self) -> None:
-        self.BASEURL = "http://XXXXXXXX/api" # change to actual api address
-        self.APPID = "alpha73cf07876a2d789e" # change to your personal app id on the developer page
-        self.APPSECRET = "cd04cdf5c44d4d9faf5406a09dc3443b" # change to your peronal app secret on the developer page
+        self.BASEURL = "https://openapi.alphaess.com/api" # change to actual api address
+        self.APPID = "alphaXXXXXXXXXXXX" # change to your personal app id on the developer page
+        self.APPSECRET = "7d71d896XXXXXXXXXXXXXXXXXXXXXXXX" # change to your peronal app secret on the developer page
         self.sys_sn_list = None   # a list of SNs registered to the APPID, initialized with get_ess_list
 
 
@@ -30,9 +27,9 @@ class AlphaESSAPI:
         timestamp = str(int(time.time()))
         url = f"{self.BASEURL}/{path}"
         sign = self.__get_signature(timestamp)
-        params.update({"appId": self.APPID, "timeStamp": timestamp, "sign": sign})
+        headers = {"appId": self.APPID, "timeStamp": timestamp, "sign": sign}
         async with aiohttp.ClientSession() as session:
-            async with session.get(url, params=params) as resp:
+            async with session.get(url, headers=headers, params=params) as resp:
                 data = await resp.json()
                 if resp.status == 200:
                     return data
@@ -45,9 +42,9 @@ class AlphaESSAPI:
         timestamp = str(int(time.time()))
         url = f"{self.BASEURL}/{path}"
         sign = self.__get_signature(timestamp)
-        params.update({"appId": self.APPID, "timeStamp": timestamp, "sign": sign})
+        headers = {"appId": self.APPID, "timeStamp": timestamp, "sign": sign}
         async with aiohttp.ClientSession() as session:
-            async with session.post(url, json=params) as resp:
+            async with session.post(url, headers=headers, json=params) as resp:
                 data = await resp.json()
                 if resp.status == 200:
                     return data
@@ -73,8 +70,6 @@ class AlphaESSAPI:
             else:
                 logger.error(f"Get ess list error: {r['code']} {r['msg']}")
         
- 
-
     # get the latest power data for the specific ESS
     # returns a dict of pbat, pev, pgrid, pload, ppv, soc
     async def get_last_power_data(self, sn) -> Optional[dict]:
@@ -171,20 +166,25 @@ class AlphaESSAPI:
 async def example_code() -> None:
     alpha = AlphaESSAPI()
 
- 
+    # adminitrative related
+    bound_systems_info = await alpha.get_ess_list()
+    print(bound_systems_info)
+    #sys_sn = 'ALB011020015002'  # as an example, can acquire from bound_system_info
+
     
     # data related
-    last_power_data = await alpha.get_last_power_data(sys_sn)
-    one_date_power = await alpha.get_one_date_power_by_sn(sys_sn, "2023-01-01")
-    one_date_energy = await alpha.get_one_date_energy_by_sn(sys_sn, "2023-01-01")
-    in_charge_config = await alpha.get_in_charge_config_info(sys_sn)
-    out_charge_config = await alpha.get_out_charge_config_info(sys_sn)
-    print(await alpha.update_in_charge_config_info(sys_sn, 100, 1, "00:00", "00:00", "00:00", "00:00"))
-    print(await alpha.update_out_charge_config_info(sys_sn, 100, 1, "00:00", "00:00", "00:00", "00:00"))
+    #last_power_data = await alpha.get_last_power_data(sys_sn)
+    #one_date_power = await alpha.get_one_date_power_by_sn(sys_sn, "2023-01-01")
+    #one_date_energy = await alpha.get_one_date_energy_by_sn(sys_sn, "2023-01-01")
+    #in_charge_config = await alpha.get_in_charge_config_info(sys_sn)
+    #out_charge_config = await alpha.get_out_charge_config_info(sys_sn)
+    #print(await alpha.update_in_charge_config_info(sys_sn, 100, 1, "00:00", "00:00", "00:00", "00:00"))
+    #print(await alpha.update_out_charge_config_info(sys_sn, 100, 1, "00:00", "00:00", "00:00", "00:00"))
 
 
 if __name__ == "__main__":
     asyncio.run(example_code())
+
 
 
     
